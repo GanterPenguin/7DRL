@@ -2,7 +2,7 @@ using _7DRL.ScreenUtilities.Screens;
 
 namespace _7DRL.ScreenUtilities
 {
-  public class ScreenManager(GameScreen screen = GameScreen.Gameplay)
+  public class ScreenManager(GameScreenTypeEnum screen = GameScreenTypeEnum.Gameplay)
   {
     private GameScreenTypeEnum CurrentScreen { get; set; } = screen;
     private readonly GameplayScreen GameplayScreen = new();
@@ -10,19 +10,19 @@ namespace _7DRL.ScreenUtilities
 
     public void ToggleMenu()
     {
-      CurrentScreen = CurrentScreen == GameScreen.Gameplay ? GameScreen.Menu : GameScreen.Gameplay;
+      CurrentScreen = CurrentScreen == GameScreenTypeEnum.Gameplay ? GameScreenTypeEnum.Menu : GameScreenTypeEnum.Gameplay;
     }
 
     public void Render()
     {
       switch (CurrentScreen)
       {
-        case GameScreen.Gameplay:
+        case GameScreenTypeEnum.Gameplay:
           {
             GameplayScreen.Render();
           }
           break;
-        case GameScreen.Menu:
+        case GameScreenTypeEnum.Menu:
           {
             MenuScreen.Render();
           }
@@ -31,7 +31,7 @@ namespace _7DRL.ScreenUtilities
     }
   }
 
-  public enum GameScreen
+  public enum GameScreenTypeEnum
   {
     Gameplay = 0,
     Menu
