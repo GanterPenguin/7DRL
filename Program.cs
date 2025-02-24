@@ -1,6 +1,5 @@
-using System;
-
 using Raylib_cs;
+using _7DRL.ScreenUtilities;
 
 namespace _7DRL
 {
@@ -9,15 +8,18 @@ namespace _7DRL
     static void Main(string[] args)
     {
       Raylib.InitWindow(800, 600, "7DRL");
-
       Raylib.SetTargetFPS(60);
+      Raylib.SetExitKey(KeyboardKey.Null);
+
+      ScreenManager screenManager = new();
 
       while (!Raylib.WindowShouldClose())
       {
+        if (Raylib.IsKeyPressed(KeyboardKey.Escape)) screenManager.ToggleMenu();
         Raylib.BeginDrawing();
         Raylib.ClearBackground(Color.RayWhite);
 
-        Raylib.DrawText("Hello C# Window", 10, 10, 20, Color.Red);
+        screenManager.Render();
 
         Raylib.EndDrawing();
       }
