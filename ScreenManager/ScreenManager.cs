@@ -4,9 +4,9 @@ namespace _7DRL.ScreenUtilities
 {
   public class ScreenManager(GameScreen screen = GameScreen.Gameplay)
   {
-    public GameScreen CurrentScreen { get; set; } = screen;
-    public IScreenManagerScreen GameplayScreen = new GameplayScreen();
-    public IScreenManagerScreen MenuScreen = new MenuScreen();
+    private GameScreenTypeEnum CurrentScreen { get; set; } = screen;
+    private readonly GameplayScreen GameplayScreen = new();
+    private readonly MenuScreen MenuScreen = new();
 
     public void ToggleMenu()
     {
