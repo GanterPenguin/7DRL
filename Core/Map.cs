@@ -4,21 +4,21 @@ namespace _7DRL.Core
   {
     public int Width { get; private set; }
     public int Height { get; private set; }
-    private Cell[,] _cells;
+    private readonly Cell[,] Cells;
 
-    private Cell emptyCell = new(-1, -1, false, false, true);
+    private readonly Cell EmptyCell = new(-1, -1, false, false, true);
 
     public Map(int width, int height)
     {
       Width = width;
       Height = height;
-      _cells = new Cell[Width, Height];
+      Cells = new Cell[Width, Height];
 
       for (int x = 0; x < Width; x++)
       {
         for (int y = 0; y < Height; y++)
         {
-          _cells[x, y] = new Cell(x, y);
+          Cells[x, y] = new Cell(x, y);
         }
       }
     }
@@ -29,11 +29,11 @@ namespace _7DRL.Core
       {
         if (x >= Width || x < 0 || y >= Height || y < 0)
         {
-          return emptyCell;
+          return EmptyCell;
         }
-        return _cells[x, y];
+        return Cells[x, y];
       }
-      set { _cells[x, y] = value; }
+      set { Cells[x, y] = value; }
     }
 
     public Cell GetCellFromScreenSpace(int startX, int startY, int screenX, int screenY, int tileSize)
