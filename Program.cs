@@ -17,7 +17,7 @@ namespace _7DRL
       {
         if (Raylib.IsKeyPressed(KeyboardKey.Escape)) screenManager.ToggleMenu();
         Raylib.BeginDrawing();
-        Raylib.ClearBackground(Color.RayWhite);
+        Raylib.ClearBackground(Color.Black);
 
         screenManager.Render();
 
