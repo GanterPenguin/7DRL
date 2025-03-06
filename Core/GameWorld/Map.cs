@@ -1,4 +1,6 @@
-namespace _7DRL.Core
+using Raylib_cs;
+
+namespace _7DRL.Core.GameWorld
 {
   public class Map
   {
@@ -33,7 +35,25 @@ namespace _7DRL.Core
         }
         return Cells[x, y];
       }
-      set { Cells[x, y] = value; }
+      set { Cells[x, y] = value; } // TODO: Добавить проверку на границы
+    }
+
+    public void Insert(int startX, int startY, Map part)
+    {
+      if (startX + part.Width > Width || startY + part.Height > Height)
+      {
+        Raylib.TraceLog(TraceLogLevel.Error, "Map part exceeds base map boundaries");
+        return;
+      }
+      for (int x2 = 0; x2 < part.Width; x2++)
+      {
+        for (int y2 = 0; y2 < part.Height; y2++)
+        {
+          int targetX = startX + x2;
+          int targetY = startY + y2;
+          this[targetX, targetY] = (Cell)part[x2, y2].Clone();
+        }
+      }
     }
 
     public Cell GetCellFromScreenSpace(int startX, int startY, int screenX, int screenY, int tileSize)

@@ -1,6 +1,6 @@
-namespace _7DRL.Core
+namespace _7DRL.Core.GameWorld
 {
-  public class Cell(int x, int y, bool isTransparent = true, bool isWalkable = true, bool isEmpty = false)
+  public class Cell(int x, int y, bool isTransparent = true, bool isWalkable = true, bool isEmpty = false) : ICloneable
   {
     public int X { get; set; } = x;
     public int Y { get; set; } = y;
@@ -20,6 +20,11 @@ namespace _7DRL.Core
 
       if (IsTransparent) return "o";
       return "#";
+    }
+
+    public object Clone()
+    {
+      return MemberwiseClone();
     }
   }
 }
